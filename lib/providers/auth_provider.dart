@@ -98,30 +98,24 @@ class AuthNotifier extends StateNotifier<AuthState> {
 
   Future<void> signInWithEmail(String email, String password) async {
     try {
-      state = state.copyWith(isLoading: true, error: null);
       await _supabaseClient.auth.signInWithPassword(
         email: email,
         password: password,
       );
-    } catch (e) {
-      state = state.copyWith(error: e.toString());
-    } finally {
-      state = state.copyWith(isLoading: false);
+    } on AuthException catch (_) {
+      return Future.error(_.message);
     }
   }
 
   Future<void> signUpWithEmail(String email, String password) async {
     try {
-      state = state.copyWith(isLoading: true, error: null);
       await _supabaseClient.auth.signUp(
         email: email,
         password: password,
       );
       // Note: Supabase might require email verification depending on your settings
-    } catch (e) {
-      state = state.copyWith(error: e.toString());
-    } finally {
-      state = state.copyWith(isLoading: false);
+    } on AuthException catch (_) {
+      return Future.error(_.message);
     }
   }
 

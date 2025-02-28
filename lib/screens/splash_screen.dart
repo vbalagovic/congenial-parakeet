@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:auto_route/auto_route.dart';
 import '../app_router.gr.dart';
 import '../providers/auth_provider.dart';
+import '../widgets/gradient_background.dart';
 
 @RoutePage()
 class SplashScreen extends ConsumerStatefulWidget {
@@ -67,22 +68,9 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: isDarkMode
-                ? [
-                    colorScheme.surface,
-                    colorScheme.surface,
-                  ]
-                : [
-                    colorScheme.primary.withAlpha(13), // 5% opacity
-                    colorScheme.surface,
-                  ],
-          ),
-        ),
+      body: GradientBackground(
+        isDarkMode: isDarkMode,
+        colorScheme: colorScheme,
         child: Center(
           child: AnimatedBuilder(
             animation: _controller,
@@ -102,7 +90,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
                           shape: BoxShape.circle,
                           boxShadow: [
                             BoxShadow(
-                              color: colorScheme.primary.withAlpha(30),
+                              color: colorScheme.primary.withOpacity(0.3),
                               blurRadius: 20,
                               spreadRadius: 5,
                             ),
@@ -128,7 +116,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
                         'Connect with your favorite words',
                         style: TextStyle(
                           fontSize: 16,
-                          color: colorScheme.onSurface.withAlpha(70),
+                          color: colorScheme.onSurface.withOpacity(0.7),
                         ),
                       ),
                     ],

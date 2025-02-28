@@ -1,6 +1,7 @@
 # RealSocial Flutter App
 
 A simple Flutter application with Supabase integration that allows users to:
+
 - Login using Google or email & password authentication
 - View their favorite words list
 - Add new words to the list
@@ -18,19 +19,23 @@ A simple Flutter application with Supabase integration that allows users to:
 
 ## Project Structure
 
-```
+``` bash
 lib/
 ├── main.dart                # Application entry point
 ├── app_router.dart          # Routing configuration
 ├── constants.dart           # Application constants
+├── guards/
+│   └── auth_guard.dart      # Authentication guard for routing
 ├── models/
 │   └── word_model.dart      # Word data model
 ├── providers/
 │   ├── auth_provider.dart   # Authentication state management
-│   └── words_provider.dart  # Words state management
+│   ├── words_provider.dart  # Words state management
+│   └── theme_provider.dart  # Theme state management
 ├── screens/
 │   ├── login_screen.dart    # Login screen UI
-│   └── app_screen.dart      # Main app screen with words list
+│   ├── app_screen.dart      # Main app screen with words list
+│   └── splash_screen.dart   # Splash screen under which auth is checked
 ├── services/
 │   └── supabase_service.dart # Supabase API integration
 └── widgets/

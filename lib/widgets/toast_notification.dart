@@ -172,6 +172,7 @@ class _ToastWidgetState extends State<_ToastWidget>
                   widget.message,
                   textAlign: TextAlign.center,
                   style: TextStyle(
+                    decoration: TextDecoration.none,
                     color: onPrimaryColor,
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
